@@ -17,34 +17,26 @@ The architecture is designed with enterprise security and scalability in mind, u
 * **Zero-Trust Security:** Utilizes Azure OpenID Connect (OIDC) for GitHub Actions authentication, completely eliminating the need for static client secrets.
 * **Least Privilege Design:** Engineered to operate within restricted Azure Custom Roles, supporting pre-created Resource Groups, Private Link networking.
 
-📁 repo-root/
-│
-├── 📁 .github/
-│   └── 📁 workflows/
-│       └── 📄 tbd-pipeline.yml       
-│
-├── 📁 global-dev/                    
-│   ├── 📄 main.tf                    
-│   ├── 📄 providers.tf               
-│   ├── 📄 variables.tf               
-│   └── 📄 terraform.tfvars           
-│
-├── 📁 global-prod/                   
-│   ├── 📄 main.tf
-│   ├── 📄 providers.tf
-│   ├── 📄 variables.tf
-│   └── 📄 terraform.tfvars            
-│
-└── 📁 projects/
-    └── 📁 kiewit-1/
-        ├── 📁 dev/                    
-        │   ├── 📄 main.tf             
-        │   ├── 📄 providers.tf        
-        │   ├── 📄 variables.tf
-        │   └── 📄 terraform.tfvars    
-        │
-        └── 📁 prod/                   
-            ├── 📄 main.tf
-            ├── 📄 providers.tf        
-            ├── 📄 variables.tf
-            └── 📄 terraform.tfvars    
+
+repo-root/
+├── .github/workflows/tbd-pipeline.yml
+├── backends/
+│   ├── dev.hcl
+│   └── prod.hcl
+├── environments/
+│   ├── dev.tfvars
+│   └── prod.tfvars
+├── modules/
+│   ├── azure_infra/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│   └── networking/
+│       ├── main.tf
+│       ├── variables.tf
+│       └── outputs.tf
+├── main.tf
+├── providers.tf
+├── variables.tf
+├── locals.tf
+└── outputs.tf
