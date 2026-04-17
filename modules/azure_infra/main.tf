@@ -33,9 +33,9 @@ resource "azurerm_storage_account" "unity" {
   min_tls_version                 = "TLS1_2"
   https_traffic_only_enabled      = true
   allow_nested_items_to_be_public = false
-  # shared_access_key_enabled = false is intentionally omitted:
-  # AzureRM provider uses storage keys internally to poll blob service readiness after creation.
-  # Disabling it causes a 403 KeyBasedAuthenticationNotPermitted error during terraform apply.
+  # Must remain true: AzureRM provider uses storage keys internally to
+  # poll queue/blob readiness. Setting false causes 403 during plan/apply.
+  shared_access_key_enabled = true
 
   tags = var.tags
   lifecycle { prevent_destroy = true }
