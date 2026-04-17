@@ -26,5 +26,6 @@ provider "azurerm" {
 provider "databricks" {
   host                        = module.azure_infra.workspace_url
   azure_workspace_resource_id = module.azure_infra.workspace_id
-  azure_use_msi               = true
+  # In GitHub Actions, OIDC token auth is handled via Azure CLI context
+  # MSI (azure_use_msi) only works on Azure VMs/agents with managed identity
 }
